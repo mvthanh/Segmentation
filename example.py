@@ -1,17 +1,18 @@
 import numpy as np
-import cv2
-
-img = cv2.imread('Data/Ground_Truth/1.png', 0)/255.0
-# img = cv2.imread('res.jpg', 0)
-cv2.imshow('img1', img)
-
-print(img.tolist())
+from tensorflow.python.keras.models import *
+from tensorflow.python.keras.layers import *
+from tensorflow.python.keras.optimizers import *
+import tensorflow as tf
 
 
-a = 122.5
-img[img > a] = 255
-img[img <= a] = 0
+inputs = np.random.random((2, 3, 4, 3))
+print(inputs)
+b4 = GlobalAveragePooling2D()(inputs)
+print(b4)
+b4 = Lambda(lambda x: K.expand_dims(x, 1))(b4)
+print(b4)
+b4 = Lambda(lambda x: K.expand_dims(x, 1))(b4)
+print(b4)
 
-cv2.imshow('img', img)
-cv2.waitKey(0)
-
+a = np.array([[[[0.38273773, 0.46700382, 0.62068826]]], [[[0.5337202, 0.48855972, 0.49095526]]]])
+print(a.shape)
